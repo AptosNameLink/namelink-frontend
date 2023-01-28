@@ -1,0 +1,25 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "inline-react-svg",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@src": "./src"
+        },
+        "extensions": [".js", ".jsx", ".tsx", ".ts"]
+      }
+    ]
+  ]
+}
