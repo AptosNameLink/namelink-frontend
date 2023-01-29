@@ -16,8 +16,8 @@ const Feed: NextPage = () => {
   return (
     <>
       <Head>
-        <title>DvideN</title>
-        <meta name="description" content="DvideN" />
+        <title>namelink</title>
+        <meta name="description" content="namelink" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
