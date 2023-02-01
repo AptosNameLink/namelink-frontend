@@ -12,8 +12,9 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>Namelink</title>
-        <meta name="description" content="Namelink" />
+        <title>namelink</title>
+        <meta name="description" content="namelink" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <LottiePlayer animationData={BgImage} />
       <Header />
