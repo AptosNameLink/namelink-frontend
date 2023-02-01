@@ -3,16 +3,31 @@ import EthLogoWhite from '@src/assets/eth-logo-white.svg';
 import MartianLogo from '@src/assets/icon_,martian.png';
 import MetamaskLogo from '@src/assets/Metamask.png';
 import ConnectedAddress from '@src/components/ConnectWallet/ConnectedAddress';
-import React from 'react';
+import { WalletInfo } from '@src/types';
+import React, { useState } from 'react';
 
+import SelectWallet from './SelectWallet';
+
+// 두가지 상태 -> Aptos 연결 / Ethereum 연결
+/*
+1. Aptos / Eth
+2. 어떤 월렛
+3. 월렛 주소 
+
+월렛 연결하는 곳에서 업데이트해야하는 스테이트 
+*/
 function ConnectWalletModal() {
+  const SIGN_IN_WALLET = 'Sign in your Wallet';
+  const [aptosWalletInfo, setAptosWalletInfo] = useState<WalletInfo>();
+  const [ethWalletInfo, setEthWalletInfo] = useState<WalletInfo>();
+
   return (
     <div>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box min-w-fit border-[1px] border-namelink-gray-4 bg-namelink-gray-7 flex flex-col items-center p-[32px] rounded-[20px]">
           <h1 className="font-bold text-[48px] text-namelink-primary mt-[16px]">
-            Sign in your Wallet
+            {SIGN_IN_WALLET}
           </h1>
           <label
             htmlFor="my-modal"
@@ -21,18 +36,22 @@ function ConnectWalletModal() {
             ✕
           </label>
           <div className="flex gap-[15px] mt-[42px]">
-            <ConnectedAddress
-              name={'aptos'}
-              LogoSvg={AptosLogoWhite}
-              imgUrl={MartianLogo.src}
-              address={'0x2599 ...e6ac'}
-            />
-            <ConnectedAddress
-              name={'ethureum'}
-              LogoSvg={EthLogoWhite}
-              imgUrl={MetamaskLogo.src}
-              address={'0x2599 ...e6ac'}
-            />
+            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col">
+              <div className="flex justify-between items-center mx-[24px] mt-[24px] mb-[42px]">
+                <h3 className="text-[34px] text-namelink-gray-0">APTOS</h3>
+                <AptosLogoWhite />
+              </div>
+              <SelectWallet chain="APTOS" />
+              {/* <ConnectedAddress imgUrl={MartianLogo.src} address={'0x2599 ...e6ac'} /> */}
+            </div>
+            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col">
+              <div className="flex justify-between items-center mx-[24px] mt-[24px] mb-[48px]">
+                <h3 className="text-[34px] text-namelink-gray-0">ETHEREUM</h3>
+                <EthLogoWhite />
+              </div>
+              <SelectWallet chain="ETHEREUM" />
+              {/* <ConnectedAddress imgUrl={MetamaskLogo.src} address={'0x2599 ...e6ac'} /> */}
+            </div>
           </div>
           <button className="btn mt-[39px] w-[698px] h-[78px] text-[26px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] via-[#B2D2EF] to-[#D9D5C2] text-namelink-gray-8 rounded-[16px]">
             MAPPING YOUR ADDRESS
