@@ -9,8 +9,6 @@ interface LottiePlayerProps {
 export default function LottiePlayer(Props: LottiePlayerProps) {
   const { animationData, style } = Props;
 
-  // making a default option
-
   const defaultOptions = {
     loop: true,
     autoplay: true,
