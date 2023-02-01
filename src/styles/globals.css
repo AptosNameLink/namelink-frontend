@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'FontHome';
+  src: url('../assets/fonts/monomaniac_one_regular.ttf');
+}
+
+@font-face {
+  font-family: "FontDefault";
+  src: url('../assets/fonts/Inconsolata-VariableFont.ttf');
+}
+
 html,
 body {
   margin: 0;

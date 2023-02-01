@@ -1,36 +1,39 @@
-import { connectMetamask } from '@src/utils/connectWallet';
-import type { NextPage } from 'next';
+import BgImage from '@src/assets/aptos_bg_motion.json';
+import Header from '@src/components/Header';
+import LottiePlayer from '@src/components/LottiePlayer';
+import Search from '@src/components/Search';
 import Head from 'next/head';
 
-const Feed: NextPage = () => {
-  const handleWalletClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    switch (e.currentTarget.id) {
-      case 'metamask':
-        console.log(await connectMetamask());
-        break;
-      default:
-        break;
-    }
-  };
+interface AnimationType {
+  animation: any;
+}
 
+function Home() {
   return (
-    <>
+    <div>
       <Head>
-        <title>DvideN</title>
-        <meta name="description" content="DvideN" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Namelink</title>
+        <meta name="description" content="Namelink" />
       </Head>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button
-        className="btn btn-outline btn-success"
-        onClick={handleWalletClick}
-        type="button"
-        id="metamask"
-      >
-        Connect Metamask Wallet
-      </button>
-    </>
+      <LottiePlayer animationData={BgImage} />
+      <Header />
+      <div className="text-center">
+        <h1 className="font-fonthome text-[92px] text-center">
+          BRING YOUR <br />
+          SOCIAL GRAPH TO APTOS
+        </h1>
+        <div>
+          <button className="font-fontdefault text-[22px] w-[249px] h-[81px] bg-gradient-to-b from-[#39CBA4] to-[#D9D5C2] rounded-[16px]">
+            MAPPING ADDRESS
+          </button>
+          <button className="font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-black rounded-[16px] ml-[30px]">
+            API
+          </button>
+        </div>
+        <Search />
+      </div>
+    </div>
   );
-};
+}
 
-export default Feed;
+export default Home;
