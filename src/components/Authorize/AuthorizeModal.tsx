@@ -3,6 +3,7 @@ import { ModalType, WalletInfo } from '@src/types';
 import { getPubKey } from '@src/utils/getPubKey';
 import React, { useEffect, useState } from 'react';
 
+import RandomNumberBar from './RandomNumberBar';
 import SignBar from './SignBar';
 
 /*
@@ -23,17 +24,17 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
   const BACK = 'Back';
   const SUBMIT = 'SUBMIT';
 
-  const getData = async () => {
-    const randomData = await getRandomValue();
+  // const getData = async () => {
+  //   const randomData = await getRandomValue();
 
-    console.log('randomData', randomData);
+  //   console.log('randomData', randomData);
 
-    // setRandomValue(randomData);
-  };
+  //   // setRandomValue(randomData);
+  // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   const handleBackBtn = () => {
     setModalType('SIGN IN YOUR WALLET');
@@ -64,6 +65,11 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
 
   return (
     <section className="mt-[33px]">
+      <RandomNumberBar
+        setRandomValue={setRandomValue}
+        randomValue={randomValue}
+        className="mb-[22px]"
+      />
       <SignBar
         chain="ETHEREUM"
         signature={ethereumSignature}
