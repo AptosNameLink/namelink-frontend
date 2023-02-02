@@ -1,11 +1,25 @@
 import BackgroundLottie from '@src/components/Common/BackgroundLottie';
 import Header from '@src/components/Common/Header';
+import HashValue from '@src/components/Home/HashValue';
 import Search from '@src/components/Home/Search';
+import useMounted from '@src/hooks/useMounted';
+import { ipfsHashAtom } from '@src/state';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 function Home() {
-  const [isMapped, setIsMapped] = useState(false);
+  // const [isMapped, setIsMapped] = useState(false);
+  const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
+  const isMounted = useMounted();
+
+  useEffect(() => {
+    if (isMounted) {
+      const ipfsHash = localStorage.getItem('ipfsHash');
+
+      ipfsHash && setIpfsHash(ipfsHash);
+    }
+  }, [isMounted]);
 
   return (
     <div>
@@ -14,16 +28,16 @@ function Home() {
         <meta name="description" content="namelink" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <BackgroundLottie isMapped={isMapped} />
+      <BackgroundLottie isMapped={!!ipfsHash} />
       <Header />
       <div className="text-center mt-[15vh]">
         <h1 className="font-fonthome text-[92px] text-center text-namelink-gray-0 whitespace-pre-line">
-          {isMapped
+          {ipfsHash
             ? 'Hi :) Check Your Address\nMapping on IPFS.'
             : 'BRING YOUR\nSOCIAL GRAPH TO APTOS'}
         </h1>
         <div className="mt-[50px]">
-          {isMapped ? (
+          {ipfsHash ? (
             <button
               className="font-fontdefault text-[22px] h-[81px] px-[42px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] to-[#D9D5C2] rounded-[16px]"
               // onClick={handleMappingClick}

@@ -3,7 +3,7 @@ import AllMaped from '@src/assets/Icon/AllMaped.svg';
 import Logged_In_APT from '@src/assets/Icon/Logged_In(APT).svg';
 import Logged_In_ETH from '@src/assets/Icon/Logged_In(ETH).svg';
 import useMounted from '@src/hooks/useMounted';
-import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
+import { aptosWalletInfoAtom, ethWalletInfoAtom, ipfsHashAtom } from '@src/state';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -21,8 +21,10 @@ function ConnectBtn() {
   const isMounted = useMounted();
   const CONNECT_WALLET = 'CONNECT WALLET';
   const LOGGED_IN = 'LOGGED IN';
+  const MAPPED = 'MAPPED';
   const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
   const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
+  const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
 
   if (ethWalletInfo?.address && !aptosWalletInfo?.address)
     return (
@@ -55,7 +57,7 @@ function ConnectBtn() {
         </div>
         <div className="btn rounded-[60px]  border-namelink-primary hover:border-namelink-primary border-[1px] text-namelink-primary bg-namelink-gray-5 hover:bg-namelink-gray-5 z-10 left-[55px] relative">
           <ChainLogo chain="ETHEREUM" />
-          {LOGGED_IN}
+          {ipfsHash ? MAPPED : LOGGED_IN}
         </div>
       </label>
     );
