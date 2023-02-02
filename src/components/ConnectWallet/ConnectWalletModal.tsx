@@ -23,7 +23,7 @@ function ConnectWalletModal() {
           </h1>
           <label
             htmlFor="my-modal"
-            className="absolute right-[30px] top-[32px] text-[30px] text-namelink-gray-0 opacity-40"
+            className="absolute right-[30px] top-[32px] text-[30px] text-namelink-gray-0 opacity-40 hover:cursor-pointer"
           >
             ✕
           </label>
