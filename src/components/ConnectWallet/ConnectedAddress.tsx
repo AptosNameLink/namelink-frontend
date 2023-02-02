@@ -13,6 +13,7 @@ interface ConnectedAddressProps {
 }
 
 function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAddressProps) {
+  const DISCONNECT = 'DISCONNECT';
   const [over, setOver] = useState(false);
 
   const handleMouseOver = () => {
@@ -49,7 +50,7 @@ function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAd
         onClick={handleDisconnected}
       >
         {over ? (
-          <p className="text-[20px] text-namelink-gray-8">DISCONNECT</p>
+          <p className="text-[20px] text-namelink-gray-8">{DISCONNECT}</p>
         ) : (
           <>
             <p className="text-[20px] text-namelink-gray-1">
