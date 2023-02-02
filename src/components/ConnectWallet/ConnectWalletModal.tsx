@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import SelectWallet from './SelectWallet';
 function ConnectWalletModal() {
   const SIGN_IN_WALLET = 'Sign in your Wallet';
+  const MAPPING_ADDRESS = 'MAPPING YOUR ADDRESS';
   const [aptosWalletInfo, setAptosWalletInfo] = useState<WalletInfo>();
   const [ethWalletInfo, setEthWalletInfo] = useState<WalletInfo>();
 
@@ -60,8 +61,11 @@ function ConnectWalletModal() {
               )}
             </div>
           </div>
-          <button className="btn mt-[39px] w-[698px] h-[78px] text-[26px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] via-[#B2D2EF] to-[#D9D5C2] text-namelink-gray-8 rounded-[16px]">
-            MAPPING YOUR ADDRESS
+          <button
+            className="btn mt-[39px] w-[698px] h-[78px] text-[26px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] via-[#B2D2EF] to-[#D9D5C2] text-namelink-gray-8 rounded-[16px]"
+            disabled={!ethWalletInfo?.address || !aptosWalletInfo?.address}
+          >
+            {MAPPING_ADDRESS}
           </button>
         </div>
       </div>
