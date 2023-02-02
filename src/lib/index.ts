@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://54.180.95.177:8082';
+const BASE_URL = 'https://dev.telegram.mentat-analysis.sigridjin.com';
 
 export const client = axios.create({
   baseURL: BASE_URL,
