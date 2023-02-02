@@ -17,7 +17,7 @@ interface AuthorizeModalProps {
 function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: AuthorizeModalProps) {
   const [ethereumSignature, setEthereumSignature] = useState<string>();
   const [aptosSignature, setAptosSignature] = useState<string>();
-  const [randomValue, setRandomValue] = useState('');
+  const [randomValue, setRandomValue] = useState('Hello World');
   const BACK = 'Back';
   const SUBMIT = 'SUBMIT';
 

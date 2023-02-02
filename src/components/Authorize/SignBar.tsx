@@ -1,4 +1,5 @@
 import { Chain } from '@src/types';
+import { signMsg } from '@src/utils/signMsg';
 import React from 'react';
 
 import ChainLogo from '../Common/ChainLogo';
@@ -24,6 +25,12 @@ function SignBar({ chain, signature, setSignature, randomValue, className }: Sig
   const LOGGED_IN_INFO = `LOGGED IN ${chainInfo[chain].shortName}`;
   const SIGN_PRIVATE_KEY = 'SIGN PRIVATE KEY →';
 
+  const handleSignMsg = async () => {
+    const msgSignature = await signMsg(chain, randomValue);
+
+    setSignature(msgSignature);
+  };
+
   return (
     <div
       className={`w-[698px] h-[154px] rounded-[12px] bg-namelink-gray-5 flex flex-col justify-center px-[24px] ${className}`}
@@ -33,7 +40,10 @@ function SignBar({ chain, signature, setSignature, randomValue, className }: Sig
           <h3 className="mr-[15px] text-[34px] text-namelink-gray-0">{LOGGED_IN_INFO}</h3>
           <ChainLogo chain={chain} />
         </div>
-        <button className="btn text-namelink-gray-0 bg-namelink-gray-7 rounded-[60px] outline-none border-none hover:bg-namelink-gray-7">
+        <button
+          className="btn text-namelink-gray-0 bg-namelink-gray-7 rounded-[60px] outline-none border-none hover:bg-namelink-gray-7"
+          onClick={handleSignMsg}
+        >
           {SIGN_PRIVATE_KEY}
         </button>
       </div>
