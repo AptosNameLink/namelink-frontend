@@ -8,7 +8,7 @@ import WalletLogo from '../Common/WalletLogo';
 
 interface SelectWalletProps {
   chain: Chain;
-  setWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo>>;
+  setWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo | undefined>>;
 }
 
 function SelectWallet({ chain, setWalletInfo }: SelectWalletProps) {
@@ -25,10 +25,34 @@ function SelectWallet({ chain, setWalletInfo }: SelectWalletProps) {
       address: result ? result : '',
       chain,
     });
+    switch (chain) {
+      case 'APTOS':
+        localStorage.setItem(
+          'aptosWalletInfo',
+          JSON.stringify({
+            wallet: walletName as EthereumWallet | AptosWallet,
+            address: result ? result : '',
+            chain,
+          }),
+        );
+        break;
+      case 'ETHEREUM':
+        localStorage.setItem(
+          'ethereumWalletInfo',
+          JSON.stringify({
+            wallet: walletName as EthereumWallet | AptosWallet,
+            address: result ? result : '',
+            chain,
+          }),
+        );
+        break;
+      default:
+        throw new Error('Invalid chain');
+    }
   };
 
   return (
-    <ul className="flex flex-col justify-center items-center">
+    <ul className="flex flex-col justify-center items-center mb-[14px]">
       {walletList?.map((wallet) => {
         return (
           <li key={wallet} className="mb-[8px]">
