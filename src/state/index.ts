@@ -10,3 +10,8 @@ export const aptosWalletInfoAtom = atom({
   key: 'aptosWalletInfoAtom',
   default: {} as WalletInfo,
 });
+
+export const ipfsHashAtom = atom({
+  key: 'ipfsHashAtom',
+  default: '',
+});

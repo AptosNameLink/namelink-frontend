@@ -1,5 +1,5 @@
 import { getRandomValue, postSignature } from '@src/lib';
-import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
+import { aptosWalletInfoAtom, ethWalletInfoAtom, ipfsHashAtom } from '@src/state';
 import { ModalType, WalletInfo } from '@src/types';
 import { getPubKey } from '@src/utils/getPubKey';
 import React, { useEffect, useState } from 'react';
@@ -25,17 +25,7 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
   const SUBMIT = 'SUBMIT';
   const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
   const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
-  // const getData = async () => {
-  //   const randomData = await getRandomValue();
-
-  //   console.log('randomData', randomData);
-
-  //   // setRandomValue(randomData);
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
 
   const handleBackBtn = () => {
     setModalType('SIGN IN YOUR WALLET');
@@ -70,8 +60,10 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
         randomValue,
       });
 
-      console.log('post result', postResult);
-      //
+      postResult?.ipfs_hash && localStorage.setItem('ipfsHash', postResult?.ipfs_hash);
+      setIpfsHash(postResult?.ipfs_hash);
+
+      console.log('post result', postResult?.ipfs_hash);
     }
   };
 
