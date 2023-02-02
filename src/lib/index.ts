@@ -32,22 +32,6 @@ export const postSignature = async ({
   ethSignature,
   aptosSignature,
 }: postSignatureProps) => {
-  console.log(
-    'ethPubKey',
-    ethPubKey,
-    'ethAddress',
-    ethAddress,
-    'aptosPubKey',
-    aptosPubKey,
-    'aptosAddress',
-    aptosAddress,
-    'randomValue',
-    randomValue,
-    'ethSignature',
-    ethSignature,
-    'aptosSignature',
-    aptosSignature,
-  );
   const { data } = await client.post('/aptos/signature?chain_name=ethereum', {
     ethereum_public_key: ethPubKey,
     ethereum_address: ethAddress,
@@ -57,6 +41,14 @@ export const postSignature = async ({
     ethereum_signature: ethSignature,
     aptos_signature: aptosSignature,
   });
+
+  return data;
+};
+
+export const getEthAddress = async (aptosAddress: string) => {
+  const { data } = await client.get(`/aptos/signature?chain_name=aptos?address=${aptosAddress}`);
+
+  console.log('&&&&&&&&&&&&&', data);
 
   return data;
 };
