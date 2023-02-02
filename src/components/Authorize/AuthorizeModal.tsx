@@ -45,7 +45,9 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     console.log('labelRef?.current?', labelRef?.current);
-    labelRef?.current?.click();
+    const labelRefCurrent = labelRef?.current as any;
+
+    labelRefCurrent?.click();
 
     const ethPubKey = await getPubKey('ETHEREUM');
     const aptosPubKey = await getPubKey('APTOS');
