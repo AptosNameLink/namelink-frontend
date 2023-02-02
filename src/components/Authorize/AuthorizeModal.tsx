@@ -1,4 +1,5 @@
 import { ModalType, WalletInfo } from '@src/types';
+import { getPubKey } from '@src/utils/getPubKey';
 import React, { useState } from 'react';
 
 import SignBar from './SignBar';
@@ -25,8 +26,13 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
     setModalType('SIGN IN YOUR WALLET');
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    const ethPubKey = await getPubKey('ETHEREUM');
+    const aptosPubKey = await getPubKey('APTOS');
+
+    console.log('ethPubKey', ethPubKey);
+    console.log('aptosPubKey', aptosPubKey);
     // @TODO Server Post
   };
 
