@@ -13,12 +13,29 @@ const signEthMsg = async (msg: string) => {
   return signature;
 };
 
+const signAptosMsg = async (msg: string) => {
+  const { pontem } = window;
+
+  const { result } = await pontem.signMessage({
+    address: true,
+    application: true,
+    chainId: true,
+    message: msg,
+    nonce: Math.floor(Math.random() * 1000),
+  });
+  // const { result } = await pontem.signMessage(msg);
+
+  console.log('aptos result', result);
+
+  return result.signature;
+};
+
 export const signMsg = async (chain: Chain, msg: string): Promise<string> => {
   switch (chain) {
     case 'ETHEREUM':
       return await signEthMsg(msg);
     case 'APTOS':
-      return '';
+      return await signAptosMsg(msg);
     default:
       return '';
   }
