@@ -2,6 +2,7 @@ import VerifiedIcon from '@src/assets/verified.svg';
 import { Chain, WalletInfo } from '@src/types';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { SetterOrUpdater } from 'recoil';
 
 interface ConnectedAddressProps {
   // name: string;
@@ -9,7 +10,7 @@ interface ConnectedAddressProps {
   chain: Chain;
   imgUrl: string;
   address: string;
-  setWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo | undefined>>;
+  setWalletInfo: SetterOrUpdater<WalletInfo>;
 }
 
 function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAddressProps) {

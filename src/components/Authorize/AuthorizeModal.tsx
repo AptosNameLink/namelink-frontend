@@ -1,7 +1,9 @@
 import { getRandomValue, postSignature } from '@src/lib';
+import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
 import { ModalType, WalletInfo } from '@src/types';
 import { getPubKey } from '@src/utils/getPubKey';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import RandomNumberBar from './RandomNumberBar';
 import SignBar from './SignBar';
@@ -14,16 +16,15 @@ import SignBar from './SignBar';
 
 interface AuthorizeModalProps {
   setModalType: React.Dispatch<React.SetStateAction<ModalType>>;
-  aptosWalletInfo: WalletInfo | undefined;
-  ethWalletInfo: WalletInfo | undefined;
 }
-function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: AuthorizeModalProps) {
+function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
   const [ethereumSignature, setEthereumSignature] = useState<string>();
   const [aptosSignature, setAptosSignature] = useState<string>();
   const [randomValue, setRandomValue] = useState('Hello World');
   const BACK = 'Back';
   const SUBMIT = 'SUBMIT';
-
+  const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
+  const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
   // const getData = async () => {
   //   const randomData = await getRandomValue();
 
@@ -45,6 +46,16 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
     const ethPubKey = await getPubKey('ETHEREUM');
     const aptosPubKey = await getPubKey('APTOS');
 
+    setAptosWalletInfo({
+      ...aptosWalletInfo,
+      pubKey: aptosPubKey,
+    });
+
+    setEthWalletInfo({
+      ...ethWalletInfo,
+      pubKey: ethPubKey,
+    });
+
     console.log('ethPubKey', ethPubKey);
     console.log('aptosPubKey', aptosPubKey);
     // @TODO Server Post
@@ -60,6 +71,7 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
       });
 
       console.log('post result', postResult);
+      //
     }
   };
 

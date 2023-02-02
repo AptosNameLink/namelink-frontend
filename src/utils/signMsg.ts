@@ -1,5 +1,8 @@
 import { Chain } from '@src/types';
 import { providers, Signer, utils } from 'ethers';
+import { sign } from 'tweetnacl';
+
+import { getPubKey } from './getPubKey';
 
 const signEthMsg = async (msg: string) => {
   const message = utils.toUtf8Bytes(msg);
@@ -21,10 +24,23 @@ const signAptosMsg = async (msg: string) => {
     application: true,
     chainId: true,
     message: msg,
+    // nonce: 744,
     nonce: Math.floor(Math.random() * 1000),
   });
-  // const { result } = await pontem.signMessage(msg);
 
+  // verify
+  console.log('result', result);
+  const pubKey = await getPubKey('APTOS');
+  const key = pubKey.slice(2, 66);
+
+  // console.log('Buffer.from(result.signature,', Buffer.from(result.signature, 'hex'));
+  const verified = sign.detached.verify(
+    Buffer.from(result.fullMessage),
+    Buffer.from(result.signature.replace('0x', ''), 'hex'),
+    Buffer.from(key, 'hex'),
+  );
+
+  console.log('verified', verified);
   console.log('aptos result', result);
 
   return result.signature;

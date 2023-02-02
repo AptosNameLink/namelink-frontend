@@ -3,25 +3,19 @@ import EthLogoWhite from '@src/assets/eth-logo-white.svg';
 import MartianLogo from '@src/assets/icon_,martian.png';
 import MetamaskLogo from '@src/assets/Metamask.png';
 import ConnectedAddress from '@src/components/ConnectWallet/ConnectedAddress';
+import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
 import { ModalType, WalletInfo } from '@src/types';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import SelectWallet from './SelectWallet';
 interface ConnectWalletModalProps {
   setModalType: React.Dispatch<React.SetStateAction<ModalType>>;
-  aptosWalletInfo: WalletInfo | undefined;
-  ethWalletInfo: WalletInfo | undefined;
-  setAptosWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo | undefined>>;
-  setEthWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo | undefined>>;
 }
-function ConnectWalletModal({
-  setModalType,
-  aptosWalletInfo,
-  setAptosWalletInfo,
-  ethWalletInfo,
-  setEthWalletInfo,
-}: ConnectWalletModalProps) {
+function ConnectWalletModal({ setModalType }: ConnectWalletModalProps) {
   const MAPPING_ADDRESS = 'MAPPING YOUR ADDRESS';
+  const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
+  const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
   const handleMapping = () => {
     setModalType('AUTHORIZE');
   };

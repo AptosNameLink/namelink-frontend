@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://54.180.95.177:8081';
+const BASE_URL = 'http://54.180.95.177:8082';
 
 export const client = axios.create({
   baseURL: BASE_URL,
@@ -32,12 +32,28 @@ export const postSignature = async ({
   ethSignature,
   aptosSignature,
 }: postSignatureProps) => {
+  console.log(
+    'ethPubKey',
+    ethPubKey,
+    'ethAddress',
+    ethAddress,
+    'aptosPubKey',
+    aptosPubKey,
+    'aptosAddress',
+    aptosAddress,
+    'randomValue',
+    randomValue,
+    'ethSignature',
+    ethSignature,
+    'aptosSignature',
+    aptosSignature,
+  );
   const { data } = await client.post('/aptos/signature?chain_name=ethereum', {
     ethereum_public_key: ethPubKey,
     ethereum_address: ethAddress,
     aptos_public_key: aptosPubKey,
     aptos_address: aptosAddress,
-    random_value: randomValue,
+    message: randomValue,
     ethereum_signature: ethSignature,
     aptos_signature: aptosSignature,
   });

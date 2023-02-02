@@ -1,6 +1,8 @@
 import useMounted from '@src/hooks/useMounted';
+import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
 import { ModalType, WalletInfo } from '@src/types';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import AuthorizeModal from '../Authorize/AuthorizeModal';
 import ConnectWalletModal from '../ConnectWallet/ConnectWalletModal';
@@ -10,8 +12,8 @@ interface ModalContentsProps {
   setModalType: React.Dispatch<React.SetStateAction<ModalType>>;
 }
 function ModalContents({ modalType, setModalType }: ModalContentsProps) {
-  const [aptosWalletInfo, setAptosWalletInfo] = useState<WalletInfo>();
-  const [ethWalletInfo, setEthWalletInfo] = useState<WalletInfo>();
+  const setAptosWalletInfo = useSetRecoilState(aptosWalletInfoAtom);
+  const setEthWalletInfo = useSetRecoilState(ethWalletInfoAtom);
   const isMounted = useMounted();
 
   useEffect(() => {
@@ -26,33 +28,11 @@ function ModalContents({ modalType, setModalType }: ModalContentsProps) {
 
   switch (modalType) {
     case 'SIGN IN YOUR WALLET':
-      return (
-        <ConnectWalletModal
-          setModalType={setModalType}
-          aptosWalletInfo={aptosWalletInfo}
-          ethWalletInfo={ethWalletInfo}
-          setAptosWalletInfo={setAptosWalletInfo}
-          setEthWalletInfo={setEthWalletInfo}
-        />
-      );
+      return <ConnectWalletModal setModalType={setModalType} />;
     case 'AUTHORIZE':
-      return (
-        <AuthorizeModal
-          setModalType={setModalType}
-          aptosWalletInfo={aptosWalletInfo}
-          ethWalletInfo={ethWalletInfo}
-        />
-      );
+      return <AuthorizeModal setModalType={setModalType} />;
     default:
-      return (
-        <ConnectWalletModal
-          setModalType={setModalType}
-          aptosWalletInfo={aptosWalletInfo}
-          ethWalletInfo={ethWalletInfo}
-          setAptosWalletInfo={setAptosWalletInfo}
-          setEthWalletInfo={setEthWalletInfo}
-        />
-      );
+      return <ConnectWalletModal setModalType={setModalType} />;
   }
 }
 

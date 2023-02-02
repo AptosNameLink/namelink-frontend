@@ -3,8 +3,10 @@ import AllMaped from '@src/assets/Icon/AllMaped.svg';
 import Logged_In_APT from '@src/assets/Icon/Logged_In(APT).svg';
 import Logged_In_ETH from '@src/assets/Icon/Logged_In(ETH).svg';
 import useMounted from '@src/hooks/useMounted';
+import { aptosWalletInfoAtom, ethWalletInfoAtom } from '@src/state';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import ChainLogo from './ChainLogo';
 
@@ -19,19 +21,10 @@ function ConnectBtn() {
   const isMounted = useMounted();
   const CONNECT_WALLET = 'CONNECT WALLET';
   const LOGGED_IN = 'LOGGED IN';
-  const [ethAddress, setEthAddress] = useState<string | null>(null);
-  const [aptosAddress, setAptosAddress] = useState<string | null>(null);
+  const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
+  const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
 
-  useEffect(() => {
-    if (isMounted) {
-      const ethWalletInfo = localStorage.getItem('ethereumWalletInfo');
-      const aptosWalletInfo = localStorage.getItem('aptosWalletInfo');
-
-      setEthAddress(ethWalletInfo ? JSON.parse(ethWalletInfo).address : null);
-      setAptosAddress(aptosWalletInfo ? JSON.parse(aptosWalletInfo).address : null);
-    }
-  }, [isMounted]);
-  if (ethAddress && !aptosAddress)
+  if (ethWalletInfo?.address && !aptosWalletInfo?.address)
     return (
       <label
         htmlFor="my-modal"
@@ -41,7 +34,7 @@ function ConnectBtn() {
         {LOGGED_IN}
       </label>
     );
-  if (!ethAddress && aptosAddress)
+  if (!ethWalletInfo?.address && aptosWalletInfo?.address)
     return (
       <label
         htmlFor="my-modal"
@@ -51,7 +44,7 @@ function ConnectBtn() {
         {LOGGED_IN}
       </label>
     );
-  if (ethAddress && aptosAddress)
+  if (ethWalletInfo?.address && aptosWalletInfo?.address)
     return (
       <label
         htmlFor="my-modal"

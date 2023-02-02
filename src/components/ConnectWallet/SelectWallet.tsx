@@ -3,12 +3,13 @@ import { AptosWallet, Chain, EthereumWallet, WalletInfo } from '@src/types';
 import { connectWallet } from '@src/utils/connectWallet';
 import { getWalletList } from '@src/utils/getWalletList';
 import React, { useState } from 'react';
+import { SetterOrUpdater } from 'recoil';
 
 import WalletLogo from '../Common/WalletLogo';
 
 interface SelectWalletProps {
   chain: Chain;
-  setWalletInfo: React.Dispatch<React.SetStateAction<WalletInfo | undefined>>;
+  setWalletInfo: SetterOrUpdater<WalletInfo>;
 }
 
 function SelectWallet({ chain, setWalletInfo }: SelectWalletProps) {

@@ -26,7 +26,9 @@
     "react-dom": "18.1.0",
     "react-icon": "^1.0.0",
     "react-lottie": "^1.2.3",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "recoil": "^0.7.6",
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
