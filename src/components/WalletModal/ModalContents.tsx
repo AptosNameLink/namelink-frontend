@@ -1,6 +1,7 @@
 import { ModalType, WalletInfo } from '@src/types';
 import React, { useState } from 'react';
 
+import AuthorizeModal from '../Authorize/AuthorizeModal';
 import ConnectWalletModal from '../ConnectWallet/ConnectWalletModal';
 
 interface ModalContentsProps {
@@ -20,6 +21,14 @@ function ModalContents({ modalType, setModalType }: ModalContentsProps) {
           ethWalletInfo={ethWalletInfo}
           setAptosWalletInfo={setAptosWalletInfo}
           setEthWalletInfo={setEthWalletInfo}
+        />
+      );
+    case 'AUTHORIZE':
+      return (
+        <AuthorizeModal
+          setModalType={setModalType}
+          aptosWalletInfo={aptosWalletInfo}
+          ethWalletInfo={ethWalletInfo}
         />
       );
     default:

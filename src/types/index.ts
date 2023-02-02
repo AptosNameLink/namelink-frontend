@@ -6,6 +6,7 @@ export interface WalletInfo {
   chain: Chain;
   address: string;
   wallet: EthereumWallet | AptosWallet;
+  pubKey?: string;
 }
 
 export interface ConnectWallet {

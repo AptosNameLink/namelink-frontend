@@ -4,7 +4,7 @@ import MartianLogo from '@src/assets/icon_,martian.png';
 import MetamaskLogo from '@src/assets/Metamask.png';
 import ConnectedAddress from '@src/components/ConnectWallet/ConnectedAddress';
 import { ModalType, WalletInfo } from '@src/types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SelectWallet from './SelectWallet';
 interface ConnectWalletModalProps {
@@ -25,6 +25,12 @@ function ConnectWalletModal({
   const handleMapping = () => {
     setModalType('AUTHORIZE');
   };
+
+  useEffect(() => {
+    if (!ethWalletInfo?.address || !aptosWalletInfo?.address) {
+      setModalType('SIGN IN YOUR WALLET');
+    }
+  }, [ethWalletInfo?.address, aptosWalletInfo?.address, setModalType]);
 
   return (
     <>

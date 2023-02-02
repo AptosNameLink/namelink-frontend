@@ -25,6 +25,7 @@ function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAd
 
   const handleDisconnected = () => {
     setWalletInfo(undefined);
+
     switch (chain) {
       case 'APTOS':
         localStorage.removeItem('aptosWalletInfo');
