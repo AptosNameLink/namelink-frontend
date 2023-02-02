@@ -1,11 +1,11 @@
-import BackgroundLottie from '@src/components/common/BackgroundLottie';
-import Header from '@src/components/common/Header';
+import BackgroundLottie from '@src/components/Common/BackgroundLottie';
+import Header from '@src/components/Common/Header';
 import Search from '@src/components/Home/Search';
 import Head from 'next/head';
 import { useState } from 'react';
 
 function Home() {
-  const [isMapped, setIsMapped] = useState(true);
+  const [isMapped, setIsMapped] = useState(false);
 
   return (
     <div>

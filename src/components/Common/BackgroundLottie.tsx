@@ -1,5 +1,5 @@
 import BgImage from '@src/assets/aptos_bg_motion.json';
-import LottiePlayer from '@src/components/common/LottiePlayer';
+import LottiePlayer from '@src/components/Common/LottiePlayer';
 import React from 'react';
 
 interface BackgroundProps {
