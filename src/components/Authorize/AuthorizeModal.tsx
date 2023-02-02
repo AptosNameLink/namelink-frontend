@@ -1,6 +1,7 @@
+import { getRandomValue, postSignature } from '@src/lib';
 import { ModalType, WalletInfo } from '@src/types';
 import { getPubKey } from '@src/utils/getPubKey';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SignBar from './SignBar';
 
@@ -22,6 +23,18 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
   const BACK = 'Back';
   const SUBMIT = 'SUBMIT';
 
+  const getData = async () => {
+    const randomData = await getRandomValue();
+
+    console.log('randomData', randomData);
+
+    // setRandomValue(randomData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const handleBackBtn = () => {
     setModalType('SIGN IN YOUR WALLET');
   };
@@ -34,6 +47,19 @@ function AuthorizeModal({ setModalType, aptosWalletInfo, ethWalletInfo }: Author
     console.log('ethPubKey', ethPubKey);
     console.log('aptosPubKey', aptosPubKey);
     // @TODO Server Post
+    if (ethereumSignature && aptosSignature && ethWalletInfo?.address && aptosWalletInfo?.address) {
+      const postResult = await postSignature({
+        ethPubKey,
+        aptosPubKey,
+        ethAddress: ethWalletInfo?.address,
+        aptosAddress: aptosWalletInfo?.address,
+        ethSignature: ethereumSignature,
+        aptosSignature,
+        randomValue,
+      });
+
+      console.log('post result', postResult);
+    }
   };
 
   return (
