@@ -13,3 +13,5 @@ export interface ConnectWallet {
   walletIcon: string;
   connectAddress?: () => void;
 }
+
+export type ModalType = 'SIGN IN YOUR WALLET' | 'AUTHORIZE' | 'ADDRESS INFO';

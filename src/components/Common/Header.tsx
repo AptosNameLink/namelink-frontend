@@ -1,8 +1,7 @@
 import Logo from '@src/assets/namelink_logo.svg';
 import Image from 'next/image';
 
-import ConnectWalletModal from '../ConnectWallet/ConnectWalletModal';
-
+import WalletModal from '../WalletModal/WalletModal';
 function Header() {
   const CONNECT_WALLET = 'CONNECT WALLET';
 
@@ -18,7 +17,7 @@ function Header() {
           {CONNECT_WALLET}
         </label>
       </header>
-      <ConnectWalletModal />
+      <WalletModal defaultModalType="SIGN IN YOUR WALLET" />
     </>
   );
 }
