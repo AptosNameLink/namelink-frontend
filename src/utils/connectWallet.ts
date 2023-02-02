@@ -45,6 +45,7 @@ export const connectWallet = async (walletName: EthereumWallet | AptosWallet) =>
     case 'Pontem':
       return await connectPontem();
     default:
-      throw new Error('Invalid wallet name');
+      alert('Not Support Yet!');
+    // throw new Error('Invalid wallet name');
   }
 };

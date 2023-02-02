@@ -1,7 +1,9 @@
+import ApiListModal from '@src/components/ApiList/ApiListModal';
 import BackgroundLottie from '@src/components/Common/BackgroundLottie';
 import Header from '@src/components/Common/Header';
 import HashValue from '@src/components/Home/HashValue';
 import Search from '@src/components/Home/Search';
+import useModal from '@src/hooks/useModal';
 import useMounted from '@src/hooks/useMounted';
 import { ipfsHashAtom } from '@src/state';
 import Head from 'next/head';
@@ -12,6 +14,7 @@ function Home() {
   // const [isMapped, setIsMapped] = useState(false);
   const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
   const isMounted = useMounted();
+  const { inputRef, handleClick } = useModal();
 
   useEffect(() => {
     if (isMounted) {
@@ -20,6 +23,11 @@ function Home() {
       ipfsHash && setIpfsHash(ipfsHash);
     }
   }, [isMounted]);
+
+  const handleApiClick = () => {
+    console.log('input', inputRef?.current?.checked);
+    handleClick();
+  };
 
   return (
     <div>
@@ -52,11 +60,22 @@ function Home() {
               MAPPING ADDRESS
             </label>
           )}
-          <button className="font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0">
+          {/* <input type="checkbox" ref={inputRef} id="my-modal-4" className="modal-toggle" />
+          <button
+            className="font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0"
+            onClick={handleApiClick}
+          >
             API
-          </button>
+          </button> */}
+          <label
+            htmlFor="my-modal-2"
+            className="btn font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 hover:border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0 bg-transparent hover:bg-transparent"
+          >
+            API
+          </label>
         </div>
         <Search />
+        <ApiListModal />
       </div>
     </div>
   );

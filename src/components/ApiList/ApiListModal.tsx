@@ -5,14 +5,14 @@ import React from 'react';
 function ApiListModal() {
   return (
     <>
-      <input type="checkbox" id="my-modal" className="modal-toggle" />
+      <input type="checkbox" id="my-modal-2" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box min-w-fit border-[1px] border-namelink-gray-4 bg-namelink-gray-7 flex flex-col items-center p-[32px] rounded-[20px]">
           <h1 className="font-bold text-[48px] text-namelink-primary mt-[16px] mb-[50px]">
             API LIST
           </h1>
           <label
-            htmlFor="my-modal"
+            htmlFor="my-modal-2"
             className="absolute right-[30px] top-[32px] text-[30px] text-namelink-gray-0 opacity-40 hover:cursor-pointer"
           >
             ✕
