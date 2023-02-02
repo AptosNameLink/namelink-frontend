@@ -38,7 +38,7 @@ function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAd
   };
 
   return (
-    <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col mt-[6px]">
+    <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col">
       <div className="flex justify-center items-center">
         <Image src={imgUrl} alt={'wallet logo'} width={'108px'} height={'108px'} layout={'fixed'} />
       </div>

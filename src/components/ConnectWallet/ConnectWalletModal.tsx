@@ -23,12 +23,12 @@ function ConnectWalletModal() {
           </h1>
           <label
             htmlFor="my-modal"
-            className="absolute right-[30px] top-[32px] text-[30px] text-namelink-gray-0 opacity-40 hover:cursor-pointer"
+            className="absolute right-[30px] top-[32px] text-[30px] text-namelink-gray-0 opacity-40 hover:pointe"
           >
             ✕
           </label>
           <div className="flex gap-[15px] mt-[42px]">
-            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col min-h-[378px]">
+            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col min-h-[378px] h-[378px]">
               <div className="flex justify-between items-center mx-[24px] mt-[24px] mb-[42px]">
                 <h3 className="text-[34px] text-namelink-gray-0">APTOS</h3>
                 <AptosLogoWhite />
@@ -44,8 +44,8 @@ function ConnectWalletModal() {
                 <SelectWallet chain="APTOS" setWalletInfo={setAptosWalletInfo} />
               )}
             </div>
-            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col min-h-[378px]">
-              <div className="flex justify-between items-center mx-[24px] mt-[24px] mb-[48px]">
+            <div className="w-[341px] bg-namelink-gray-5 rounded-[24px] flex flex-col min-h-[378px] h-[378px]">
+              <div className="flex justify-between items-center mx-[24px] mt-[24px] mb-[42px]">
                 <h3 className="text-[34px] text-namelink-gray-0">ETHEREUM</h3>
                 <EthLogoWhite />
               </div>

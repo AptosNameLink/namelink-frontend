@@ -3,6 +3,7 @@ import Header from '@src/components/Common/Header';
 import Search from '@src/components/Home/Search';
 import Head from 'next/head';
 import { useState } from 'react';
+import { isMap } from 'util/types';
 
 function Home() {
   const [isMapped, setIsMapped] = useState(false);
@@ -23,9 +24,21 @@ function Home() {
             : 'BRING YOUR\nSOCIAL GRAPH TO APTOS'}
         </h1>
         <div className="mt-[50px]">
-          <button className="font-fontdefault text-[22px] h-[81px] px-[42px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] to-[#D9D5C2] rounded-[16px]">
-            {isMapped ? 'Checking your address' : 'MAPPING ADDRESS'}
-          </button>
+          {isMapped ? (
+            <button
+              className="font-fontdefault text-[22px] h-[81px] px-[42px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] to-[#D9D5C2] rounded-[16px]"
+              // onClick={handleMappingClick}
+            >
+              Checking your address
+            </button>
+          ) : (
+            <label
+              htmlFor="my-modal"
+              className="btn font-fontdefault text-[22px] h-[81px] px-[42px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] to-[#D9D5C2] rounded-[16px] text-namelink-gray-8"
+            >
+              MAPPING ADDRESS
+            </label>
+          )}
           <button className="font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0">
             API
           </button>

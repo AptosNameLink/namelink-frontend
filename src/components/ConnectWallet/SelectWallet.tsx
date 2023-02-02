@@ -17,7 +17,7 @@ function SelectWallet({ chain, setWalletInfo }: SelectWalletProps) {
   const handleConnectWallet = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const { id: walletName } = e.currentTarget;
 
-    const result = await connectWallet(walletName);
+    const result = await connectWallet(walletName as EthereumWallet | AptosWallet);
 
     console.log(result);
     setWalletInfo({
