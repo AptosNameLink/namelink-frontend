@@ -16,6 +16,7 @@ specifiers:
   autoprefixer: ^10.0.2
   babel-plugin-inline-react-svg: ^2.0.1
   babel-plugin-module-resolver: ^4.1.0
+  copy-to-clipboard: ^3.3.3
   daisyui: ^2.22.0
   eslint: 8.22.0
   eslint-config-next: 12.1.6
@@ -43,8 +44,9 @@ specifiers:
 dependencies:
   '@babel/runtime': 7.20.13
   '@metamask/providers': 9.1.0
-  aptos: 1.6.0
   '@types/react-icons': 3.0.0_react@18.1.0
+  aptos: 1.6.0
+  copy-to-clipboard: 3.3.3
   daisyui: 2.40.1_2lwn2upnx27dqeg6hqdu7sq75m
   next: 12.1.6_td47doa7v53j5lryo7z7ezthbi
   react: 18.1.0
@@ -79,7 +81,7 @@ devDependencies:
   postcss-html: 1.5.0
   postcss-syntax: 0.36.2_shfey7e72zyfeht3ovldxqpxnq
   prettier: 2.7.1
-  tailwindcss: 3.2.4_postcss@8.4.19
+  tailwindcss: 3.2.4
   typescript: 4.7.2
 
 packages:
@@ -1076,6 +1078,12 @@ packages:
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
 
+  /copy-to-clipboard/3.3.3:
+    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
+    dependencies:
+      toggle-selection: 1.0.6
+    dev: false
+
   /core-js-pure/3.26.1:
     resolution: {integrity: sha512-VVXcDpp/xJ21KdULRq/lXdLzQAtX7+37LzpyfFM973il0tWSsDEoyzG38G14AjTpK9VTfiNM9jnFauq/CpaWGQ==}
     requiresBuild: true
@@ -1157,7 +1165,7 @@ packages:
       css-selector-tokenizer: 0.8.0
       postcss: 8.4.19
       postcss-js: 4.0.0_postcss@8.4.19
-      tailwindcss: 3.2.4_postcss@8.4.19
+      tailwindcss: 3.2.4
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -3344,12 +3352,10 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.19:
+  /tailwindcss/3.2.4:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -3394,6 +3400,10 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+
+  /toggle-selection/1.0.6:
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
+    dev: false
 
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
