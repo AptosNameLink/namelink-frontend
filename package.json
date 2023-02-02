@@ -14,6 +14,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.6",
     "@babel/runtime": "^7.20.13",
     "@metamask/providers": "^9.1.0",
     "@types/react-icons": "^3.0.0",
@@ -22,6 +23,7 @@
     "copy-to-clipboard": "^3.3.3",
     "daisyui": "^2.22.0",
     "ethers": "^5.7.2",
+    "graphql": "^16.6.0",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",

@@ -24,11 +24,6 @@ function Home() {
     }
   }, [isMounted]);
 
-  const handleApiClick = () => {
-    console.log('input', inputRef?.current?.checked);
-    handleClick();
-  };
-
   return (
     <div>
       <Head>
@@ -38,7 +33,7 @@ function Home() {
       </Head>
       <BackgroundLottie isMapped={!!ipfsHash} />
       <Header />
-      <div className="text-center mt-[15vh]">
+      <main className="text-center mt-[15vh]">
         <h1 className="font-fonthome text-[92px] text-center text-namelink-gray-0 whitespace-pre-line">
           {ipfsHash
             ? 'Hi :) Check Your Address\nMapping on IPFS.'
@@ -60,13 +55,6 @@ function Home() {
               MAPPING ADDRESS
             </label>
           )}
-          {/* <input type="checkbox" ref={inputRef} id="my-modal-4" className="modal-toggle" />
-          <button
-            className="font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0"
-            onClick={handleApiClick}
-          >
-            API
-          </button> */}
           <label
             htmlFor="my-modal-2"
             className="btn font-fontdefault text-[22px] w-[101px] h-[81px] border-solid border border-namelink-gray-0 hover:border-namelink-gray-0 rounded-[16px] ml-[30px] text-namelink-gray-0 bg-transparent hover:bg-transparent"
@@ -76,7 +64,7 @@ function Home() {
         </div>
         <Search />
         <ApiListModal />
-      </div>
+      </main>
     </div>
   );
 }

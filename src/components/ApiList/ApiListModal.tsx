@@ -1,8 +1,14 @@
 import BorderLine from '@src/assets/border-line.svg';
 import ApiButton from '@src/components/ApiList/ApiButton';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 function ApiListModal() {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push('/lens-profile');
+  };
+
   return (
     <>
       <input type="checkbox" id="my-modal-2" className="modal-toggle" />
@@ -22,10 +28,10 @@ function ApiListModal() {
           </p>
           <BorderLine />
           <div className="grid grid-cols-2 grid-rows-2 gap-[16px] mt-[26.5px]">
-            <ApiButton title="LENS PROFILE" />
-            <ApiButton title="LENS FOLLOWING" />
-            <ApiButton title="FARCASTER PROFILE" />
-            <ApiButton title="ENS" />
+            <ApiButton title="LENS PROFILE" onClick={handleClick} />
+            <ApiButton title="LENS FOLLOWING" onClick={handleClick} />
+            <ApiButton title="FARCASTER PROFILE" onClick={handleClick} />
+            <ApiButton title="ENS" onClick={handleClick} />
           </div>
         </div>
       </div>
