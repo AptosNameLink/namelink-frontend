@@ -3,7 +3,6 @@ import Header from '@src/components/Common/Header';
 import Search from '@src/components/Home/Search';
 import Head from 'next/head';
 import { useState } from 'react';
-import { isMap } from 'util/types';
 
 function Home() {
   const [isMapped, setIsMapped] = useState(false);
