@@ -9,7 +9,7 @@ import WalletLogo from '../Common/WalletLogo';
 
 interface SelectWalletProps {
   chain: Chain;
-  setWalletInfo: SetterOrUpdater<WalletInfo>;
+  setWalletInfo: SetterOrUpdater<WalletInfo | undefined>;
 }
 
 function SelectWallet({ chain, setWalletInfo }: SelectWalletProps) {

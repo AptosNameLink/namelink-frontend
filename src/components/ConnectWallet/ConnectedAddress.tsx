@@ -1,8 +1,9 @@
 import VerifiedIcon from '@src/assets/verified.svg';
+import { ipfsHashAtom } from '@src/state';
 import { Chain, WalletInfo } from '@src/types';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { SetterOrUpdater } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 
 interface ConnectedAddressProps {
   // name: string;
@@ -10,12 +11,13 @@ interface ConnectedAddressProps {
   chain: Chain;
   imgUrl: string;
   address: string;
-  setWalletInfo: SetterOrUpdater<WalletInfo>;
+  setWalletInfo: SetterOrUpdater<WalletInfo | undefined>;
 }
 
 function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAddressProps) {
   const DISCONNECT = 'DISCONNECT';
   const [over, setOver] = useState(false);
+  const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
 
   const handleMouseOver = () => {
     setOver(true);
@@ -26,7 +28,9 @@ function ConnectedAddress({ chain, imgUrl, address, setWalletInfo }: ConnectedAd
 
   const handleDisconnected = () => {
     setWalletInfo(undefined);
+    setIpfsHash('');
 
+    localStorage.removeItem('ipfsHash');
     switch (chain) {
       case 'APTOS':
         localStorage.removeItem('aptosWalletInfo');

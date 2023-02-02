@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { getRandomValue, postSignature } from '@src/lib';
-import { aptosWalletInfoAtom, ethWalletInfoAtom, ipfsHashAtom } from '@src/state';
+import { aptosWalletInfoAtom, ethWalletInfoAtom, ipfsHashAtom, toastMsgAtom } from '@src/state';
 import { ModalType, WalletInfo } from '@src/types';
 import { getPubKey } from '@src/utils/getPubKey';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import RandomNumberBar from './RandomNumberBar';
@@ -26,25 +27,42 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
   const [aptosWalletInfo, setAptosWalletInfo] = useRecoilState(aptosWalletInfoAtom);
   const [ethWalletInfo, setEthWalletInfo] = useRecoilState(ethWalletInfoAtom);
   const [ipfsHash, setIpfsHash] = useRecoilState(ipfsHashAtom);
+  const [toastMsg, setToastMsg] = useRecoilState(toastMsgAtom);
+  const labelRef = useRef(null);
 
+  useEffect(() => {
+    if (ethereumSignature || aptosSignature) {
+      setToastMsg('Signed with your wallet private key successfully. (1/2)');
+    }
+    if (ethereumSignature && aptosSignature) {
+      setToastMsg('Signed with your wallet private key successfully. (2/2)');
+    }
+  }, [ethereumSignature, aptosSignature]);
   const handleBackBtn = () => {
     setModalType('SIGN IN YOUR WALLET');
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    console.log('labelRef?.current?', labelRef?.current);
+    labelRef?.current?.click();
+
     const ethPubKey = await getPubKey('ETHEREUM');
     const aptosPubKey = await getPubKey('APTOS');
 
-    setAptosWalletInfo({
-      ...aptosWalletInfo,
-      pubKey: aptosPubKey,
-    });
+    setToastMsg(undefined);
 
-    setEthWalletInfo({
-      ...ethWalletInfo,
-      pubKey: ethPubKey,
-    });
+    aptosWalletInfo &&
+      setAptosWalletInfo({
+        ...aptosWalletInfo,
+        pubKey: aptosPubKey,
+      });
+
+    ethWalletInfo &&
+      setEthWalletInfo({
+        ...ethWalletInfo,
+        pubKey: ethPubKey,
+      });
 
     console.log('ethPubKey', ethPubKey);
     console.log('aptosPubKey', aptosPubKey);
@@ -68,7 +86,7 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
   };
 
   return (
-    <section className="mt-[33px]">
+    <section className="mt-[33px] relative">
       <RandomNumberBar
         setRandomValue={setRandomValue}
         randomValue={randomValue}
@@ -95,13 +113,23 @@ function AuthorizeModal({ setModalType }: AuthorizeModalProps) {
         >
           {BACK}
         </button>
-        <button
+        <label htmlFor="my-modal" ref={labelRef}>
+          <button
+            className="btn w-[444px] h-[78px] text-[26px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] via-[#B2D2EF] to-[#D9D5C2] text-namelink-gray-8 rounded-[16px] border-none"
+            onClick={handleSubmit}
+            disabled={!ethereumSignature || !aptosSignature}
+          >
+            {SUBMIT}
+          </button>
+        </label>
+        {/* <label
+          htmlFor="my-modal"
           className="btn w-[444px] h-[78px] text-[26px] bg-gradient-to-b from-[#39CBA4] via-[#18DCAD] via-[#B2D2EF] to-[#D9D5C2] text-namelink-gray-8 rounded-[16px] border-none"
           onClick={handleSubmit}
           disabled={!ethereumSignature || !aptosSignature}
         >
           {SUBMIT}
-        </button>
+        </label> */}
       </div>
     </section>
   );
