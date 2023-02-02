@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 function Home() {
-  const [isMapped, setIsMapped] = useState(false);
+  const [isMapped, setIsMapped] = useState(true);
 
   return (
     <div>
